@@ -19,6 +19,10 @@ function! wisebrock#AddHock()
 endfunction
 
 function! wisebrock#DoCommand(key1, key2, begin)
+	call feedkeys(a:key1 . a:key2 . a:begin, 'nx')
+	if mode('.') == "i"
+		return
+	endif
 	let pos = getpos('.')
 	let i = stridx(getline('.'), a:begin, pos[2] - 1)
 	if i < 0
